@@ -1,11 +1,9 @@
 # AutoPwn
-[![Ask DeepWiki](https://devin.ai/assets/askdeepwiki.png)](https://deepwiki.com/KalebBacztub/AutoPwn.git)
-
 AutoPwn is an AI-driven agent designed to autonomously discover and execute exploits against known vulnerabilities in a sandboxed environment. It leverages large language models guided by structured "playbooks" to progress through the stages of a software exploit, from initial reconnaissance to achieving root shell access.
 
 ## Overview
 
-The system operates by orchestrating an AI agent that interacts with a target application running inside a VirtualBox virtual machine. The agent's goal is to exploit a buffer overflow vulnerability in the `ConnMan` (Connection Manager) service.
+The system operates by orchestrating an AI agent that interacts with a target application running inside a VirtualBox virtual machine. The agent's goal for this test case is to exploit a buffer overflow vulnerability in the `ConnMan` (Connection Manager) service.
 
 The process is broken down into distinct phases, with the AI making decisions at each step based on the results of its previous actions and a phase-specific playbook.
 
@@ -22,6 +20,7 @@ The agent follows a multi-phase strategy to achieve its goal:
 4.  **Choose Strategy**: Based on the reconnaissance data (specifically whether the stack is executable), the AI chooses an appropriate attack vector:
     *   **ret-to-esp**: If the stack is executable, it will jump to shellcode placed on the stack.
     *   **ret2libc**: If W^X is enabled, it will bypass this protection by building a ROP (Return-Oriented Programming) chain to call functions from the standard C library (`libc`).
+    *   **ret2rop**: Was tested extensively within my development environment. For simplicity, this version does not have that function. 
 
 5.  **Deploy Shellcode**: The AI follows the playbook for its chosen strategy. It constructs the final payload (either shellcode or a ROP chain) and triggers the exploit to gain an interactive root shell on the target VM.
 
@@ -52,7 +51,7 @@ The agent follows a multi-phase strategy to achieve its goal:
         ```
 
 3.  **Script Configuration**:
-    *   Review the constants at the top of `final_automated_agent.py`, such as `VBOXMANAGE_PATH`, to ensure they match your system configuration.
+    *   Review the constants at the top of `final_automated_agent.py`, such as `VBOXMANAGE_PATH`, to ensure they match your system configuration. And Select the Model you would like to use. 
 
 ### Running the Exploit
 
@@ -65,9 +64,9 @@ Use the `launcher.py` script to start an automated exploit attempt.
     python launcher.py -t connman -s none -v
     ```
 
-*   Exploit the target with W^X (non-executable stack) protection enabled:
+*   Exploit the target with W^X (non-executable stack) protection enabled in verbose
     ```bash
-    python launcher.py --target connman --security-level wx
+    python launcher.py --target connman --security-level wx -v
     ```
 
 ## Key Files
