@@ -77,3 +77,9 @@ Use the `launcher.py` script to start an automated exploit attempt.
 *   `generated_dns_server.py`: A malicious DNS server script generated at runtime to deliver the exploit payload to the `connmand` service.
 *   `connman-1.34.tar.gz`: The source code for the vulnerable version of the ConnMan service.
 *   `ova to the Ubuntu VM.txt`: Contains the Google Drive link to download the required VirtualBox VM image.
+
+
+## Additional Documents 
+https://www.overleaf.com/read/nbxwcvgsbxbj#684a9d
+
+https://docs.google.com/presentation/d/1N72VNUaB1DLC6Kv2h6B7FpYASJxDiSdz/edit?usp=sharing&ouid=100596450696605442684&rtpof=true&sd=true
