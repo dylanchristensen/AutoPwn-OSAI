@@ -1,3 +1,6 @@
+**Note:** This is a work-in-progress fork of AutoPwn. The goal is to explore integration of open-source AI models to enhance and extend autonomous vulnerability discovery and exploitation. Currently in planning and setup — functionality matches upstream until further commits are added.
+
+
 # AutoPwn
 AutoPwn is an AI-driven agent designed to autonomously discover and execute exploits against known vulnerabilities in a sandboxed environment. It leverages large language models guided by structured "playbooks" to progress through the stages of a software exploit, from initial reconnaissance to achieving root shell access.
 
